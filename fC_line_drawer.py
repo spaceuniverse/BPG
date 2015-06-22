@@ -41,7 +41,7 @@ while running:
         running = False
         print "exit"
         pygame.image.save(screen, NAME + ".jpg")
-    if drawn != True:
+    if not drawn:
         for line in lines_collector:
             color = (random.randrange(256), random.randrange(256), random.randrange(256))
             for point in line:

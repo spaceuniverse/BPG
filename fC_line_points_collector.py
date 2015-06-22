@@ -44,7 +44,7 @@ while running:
     if e.type == pygame.MOUSEBUTTONUP:
         draw_on = False
         print points_collector, len(points_collector)
-        lines_collector.append( (lines_counter, points_collector) )
+        lines_collector.append((lines_counter, points_collector))
         lines_counter += 1
         print lines_collector, len(lines_collector)
     if e.type == pygame.MOUSEMOTION:

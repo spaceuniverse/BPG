@@ -13,7 +13,7 @@ def calculate(first, my, last):
     # y1 = 2*yc - y0/2 - y2/2
     x1 = 2 * my[0] - first[0] / 2 - last[0] / 2
     y1 = 2 * my[1] - first[1] / 2 - last[1] / 2
-    return (x1, y1)
+    return x1, y1
 
 
 def bezier(first, middle, last):
@@ -23,7 +23,7 @@ def bezier(first, middle, last):
     for t in tlist:
         # xt = x0 * t ** 2 + x1 * 2 * t * (1 - t) + x2 * (1 - t) ** 2
         # yt = y0 * t ** 2 + y1 * 2 * t * (1 - t) + y2 * (1 - t) ** 2
-        t = t / 100.0
+        t /= 100.0
         xt = int(first[0] * t ** 2 + middle[0] * 2 * t * (1 - t) + last[0] * (1 - t) ** 2)
         yt = int(first[1] * t ** 2 + middle[1] * 2 * t * (1 - t) + last[1] * (1 - t) ** 2)
         pointslist.append((xt, yt))
@@ -65,7 +65,7 @@ while running:
         running = False
         print "exit"
         pygame.image.save(screen, NAME + ".jpg")
-    if drawn != True:
+    if not drawn:
         for line in lines_collector:
             color = (random.randrange(256), random.randrange(256), random.randrange(256))
             # Original
