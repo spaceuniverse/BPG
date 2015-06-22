@@ -33,7 +33,7 @@ while running:
             print ent[0], ent[1]
             c.writerow(ent[1])
         print "saved"
-        pygame.image.save(screen, NAME + ".jpg")
+        pygame.image.save(screen, NAME + "_collected.jpg")
     if e.type == pygame.MOUSEBUTTONDOWN:
         color = (random.randrange(256), random.randrange(256), random.randrange(256))
         pygame.draw.circle(screen, color, e.pos, radius)

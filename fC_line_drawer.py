@@ -40,7 +40,7 @@ while running:
     if e.type == pygame.QUIT:
         running = False
         print "exit"
-        pygame.image.save(screen, NAME + ".jpg")
+        pygame.image.save(screen, NAME + "_original.jpg")
     if not drawn:
         for line in lines_collector:
             color = (random.randrange(256), random.randrange(256), random.randrange(256))

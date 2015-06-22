@@ -8,6 +8,7 @@ import csv
 
 
 def calculate(first, my, last):
+    # Points
     # p0 p1 p2 | pc
     # x1 = 2*xc - x0/2 - x2/2
     # y1 = 2*yc - y0/2 - y2/2
@@ -17,10 +18,12 @@ def calculate(first, my, last):
 
 
 def bezier(first, middle, last):
+    # Formula
     # P(t) = P0*t^2 + P1*2*t*(1-t) + P2*(1-t)^2
     tlist = range(0, 101, 1)
     pointslist = []
     for t in tlist:
+        # Points
         # xt = x0 * t ** 2 + x1 * 2 * t * (1 - t) + x2 * (1 - t) ** 2
         # yt = y0 * t ** 2 + y1 * 2 * t * (1 - t) + y2 * (1 - t) ** 2
         t /= 100.0
@@ -64,20 +67,22 @@ while running:
     if e.type == pygame.QUIT:
         running = False
         print "exit"
-        pygame.image.save(screen, NAME + ".jpg")
+        pygame.image.save(screen, NAME + "_bezier.jpg")
     if not drawn:
         for line in lines_collector:
             color = (random.randrange(256), random.randrange(256), random.randrange(256))
             # Original
             # for point in line:
             # pygame.draw.circle(screen, color, point, radius)
+            #
             # Points
             # pygame.draw.circle(screen, (255,255,255), line[0], 3)
             # pygame.draw.circle(screen, (255,255,255), line[-1], 3)
             # pygame.draw.circle(screen, (255,255,255), line[len(line)/2], 3)
-            # Calculate
+            #
+            # Calculate middle point
             middle = calculate(line[0], line[len(line)/2], line[-1])
-            # Bezier
+            # Bezier curve
             curve = bezier(line[0], middle, line[-1])
             for point in curve:
                 pygame.draw.circle(screen, color, point, radius)
