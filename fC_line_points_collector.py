@@ -6,10 +6,10 @@ import numpy as np
 import csv
 # -------------------------#
 
-NAME = "points"
+NAME = "./data/points"
 
 pygame.font.init()   # pygame.init()
-screen = pygame.display.set_mode((800,600))
+screen = pygame.display.set_mode((800, 600))
 mfont = pygame.font.Font(None, 25)
 
 draw_on = False

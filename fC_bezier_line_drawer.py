@@ -7,7 +7,7 @@ import csv
 # -------------------------#
 
 
-def calculate(first,my,last):
+def calculate(first, my, last):
     # p0 p1 p2 | pc
     # x1 = 2*xc - x0/2 - x2/2
     # y1 = 2*yc - y0/2 - y2/2
@@ -16,7 +16,7 @@ def calculate(first,my,last):
     return (x1, y1)
 
 
-def bezier(first,middle,last):
+def bezier(first, middle, last):
     # P(t) = P0*t^2 + P1*2*t*(1-t) + P2*(1-t)^2
     tlist = range(0, 101, 1)
     pointslist = []
@@ -30,9 +30,9 @@ def bezier(first,middle,last):
     return pointslist
 
 
-NAME = "points"
+NAME = "./data/points"
 
-screen = pygame.display.set_mode((800,600))
+screen = pygame.display.set_mode((800, 600))
 
 color = (255, 255, 255)
 radius = 2
@@ -42,7 +42,7 @@ drawn = False
 points_collector = []
 lines_collector = []
 
-cr = csv.reader(open(NAME + ".csv","rb"))
+cr = csv.reader(open(NAME + ".csv", "rb"))
 
 # -------------------------#
 

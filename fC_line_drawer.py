@@ -6,9 +6,9 @@ import numpy as np
 import csv
 # -------------------------#
 
-NAME = "points"
+NAME = "./data/points"
 
-screen = pygame.display.set_mode((800,600))
+screen = pygame.display.set_mode((800, 600))
 
 color = (255, 255, 255)
 radius = 2
@@ -18,7 +18,7 @@ drawn = False
 points_collector = []
 lines_collector = []
 
-cr = csv.reader(open(NAME + ".csv","rb"))
+cr = csv.reader(open(NAME + ".csv", "rb"))
 
 # -------------------------#
 
