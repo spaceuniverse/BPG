@@ -7,13 +7,30 @@ import csv
 # -------------------------#
 
 
-def calculate(first, my, last):
-    # Points
+def finder(line):
+    coeff = int(len(line) / 100 * 5)
+    dmem = 0
+    imem = 0
+    for i in xrange(coeff, len(line) - coeff, 1):
+        xa = (line[i - coeff][0] + line[i + coeff][0]) / 2
+        ya = (line[i - coeff][1] + line[i + coeff][1]) / 2
+        d = np.sqrt((xa - line[i][0]) ** 2 + (ya - line[i][1]) ** 2)
+        if d > dmem:
+            dmem = d
+            imem = i
+    t = imem * 1.0 / len(line)
+    return t, line[imem]
+
+
+def calculate(first, my, last, t):
+    # Points t = 0.5
     # p0 p1 p2 | pc
     # x1 = 2*xc - x0/2 - x2/2
     # y1 = 2*yc - y0/2 - y2/2
-    x1 = 2 * my[0] - first[0] / 2 - last[0] / 2
-    y1 = 2 * my[1] - first[1] / 2 - last[1] / 2
+    # x1 = 2 * my[0] - first[0] / 2 - last[0] / 2
+    # y1 = 2 * my[1] - first[1] / 2 - last[1] / 2
+    x1 = (my[0] - first[0] * t ** 2 - last[0] * (1 - t) ** 2) / (2 * t * (1 - t))
+    y1 = (my[1] - first[1] * t ** 2 - last[1] * (1 - t) ** 2) / (2 * t * (1 - t))
     return x1, y1
 
 
@@ -71,6 +88,7 @@ while running:
     if not drawn:
         for line in lines_collector:
             color = (random.randrange(256), random.randrange(256), random.randrange(256))
+            #
             # Original
             # for point in line:
             # pygame.draw.circle(screen, color, point, radius)
@@ -80,8 +98,12 @@ while running:
             # pygame.draw.circle(screen, (255,255,255), line[-1], 3)
             # pygame.draw.circle(screen, (255,255,255), line[len(line)/2], 3)
             #
+            # Find important point
+            # t, impoint = finder(line)
+            # pygame.draw.circle(screen, (255, 255, 255), impoint, 3)
+            #
             # Calculate middle point
-            middle = calculate(line[0], line[len(line)/2], line[-1])
+            middle = calculate(line[0], line[len(line)/2], line[-1], 0.5)
             # Bezier curve
             curve = bezier(line[0], middle, line[-1])
             for point in curve:
